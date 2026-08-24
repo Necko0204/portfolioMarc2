@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#dcded8" />
+    <meta name="description" content="Portfolio of Marc Angelo Mendoza, a Full Stack Web Developer building practical, responsive digital systems." />
+    <meta name="author" content="Marc Angelo Mendoza" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://portfolio-marc-mendoza.onrender.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Marc Angelo Mendoza — Full Stack Web Developer" />
+    <meta property="og:description" content="Responsive platforms, secure portals, and practical digital systems built around real workflows." />
+    <meta property="og:image" content="/og-document.png" />
+    <meta property="og:image:alt" content="Marc Angelo Mendoza — Full Stack Web Developer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marc Angelo Mendoza — Full Stack Web Developer" />
+    <meta name="twitter:description" content="Responsive platforms, secure portals, and practical digital systems built around real workflows." />
+    <meta name="twitter:image" content="/og-document.png" />
+    <title>Marc Angelo Mendoza — Full Stack Web Developer</title>
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem('marc-portfolio-theme') === 'dark' ? 'dark' : 'light'
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach((tag) => {
+        tag.setAttribute('content', new URL('/og-document.png', window.location.origin).href)
+      })
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

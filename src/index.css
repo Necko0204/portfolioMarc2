@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color: #171816;
+  background: #dcded8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ink: #171816;
+  --paper: #f5f4ee;
+  --canvas: #dcded8;
+  --panel: #efeee8;
+  --muted: #64665f;
+  --line: #c7c9c2;
+  --blue: #2255e6;
+  --shadow: rgba(30, 32, 28, .2);
+}
+
+:root[data-theme="dark"] {
+  color: #e7e7df;
+  background: #121411;
+  --ink: #e7e7df;
+  --paper: #191b18;
+  --canvas: #10120f;
+  --panel: #20221e;
+  --muted: #a1a39a;
+  --line: #34372f;
+  --blue: #7597ff;
+  --shadow: rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--canvas); }
+button, a { font: inherit; }
+a { color: inherit; }
+::selection { color: white; background: var(--blue); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
