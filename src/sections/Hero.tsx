@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Download, MapPin } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { profile } from '../data/portfolio'
+import { profile, projects } from '../data/portfolio'
 
 const statements = [
   'building useful things',
@@ -16,6 +16,12 @@ const typedNameLines = [
   `${nameParts.at(-1)}.`,
 ]
 const typedNameLength = typedNameLines.reduce((total, line) => total + line.length, 0)
+const recruiterSnapshot = [
+  { value: String(projects.length).padStart(2, '0'), label: 'selected builds' },
+  { value: '03', label: 'role-based portals' },
+  { value: '04', label: 'international markets' },
+  { value: profile.graduated, label: 'BSIT graduate' },
+]
 
 function TypedLine({ text, showCursor }: { text: string; showCursor: boolean }) {
   const hasAccent = text.endsWith('.')
@@ -148,6 +154,16 @@ export function Hero() {
             </AnimatePresence>
           </div>
         </aside>
+      </div>
+
+      <div className="recruiter-rail" aria-label="Recruiter snapshot">
+        <p><span>signal</span> recruiter snapshot</p>
+        {recruiterSnapshot.map((item) => (
+          <div key={item.label}>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))}
       </div>
 
       <div className="hero-foot">

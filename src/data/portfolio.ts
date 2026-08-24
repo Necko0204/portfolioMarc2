@@ -18,6 +18,12 @@ export interface Project {
   image: string
   imageAlt: string
   liveUrl: string
+  evidence: {
+    challenge: string
+    ownership: string
+    systems: string[]
+    delivery: string
+  }
 }
 
 export interface SkillGroup {
@@ -97,6 +103,12 @@ export const projects: Project[] = [
     image: '/projects/portfolio.png',
     imageAlt: 'Full-stack systems portfolio home page preview',
     liveUrl: 'https://portfolio-marc-mendoza.onrender.com/',
+    evidence: {
+      challenge: 'Turn a broad CV and mixed project history into a concise, proof-led developer narrative.',
+      ownership: 'Information architecture, visual system, responsive React implementation, motion, and deployment.',
+      systems: ['Portfolio data model', 'Project index', 'Responsive navigation', 'Theme system'],
+      delivery: 'Live portfolio · continuously maintained',
+    },
   },
   {
     id: 'coaching-hub',
@@ -108,6 +120,12 @@ export const projects: Project[] = [
     image: '/projects/valorant.png',
     imageAlt: 'Necko’s Coaching Hub landing page preview',
     liveUrl: 'https://valo-coaching-necko.onrender.com/',
+    evidence: {
+      challenge: 'Make a competitive coaching offer immediately understandable, credible, and easy to book.',
+      ownership: 'Product framing, interface design, responsive React build, conversion journey, and launch.',
+      systems: ['Service positioning', 'Booking journey', 'Responsive landing page'],
+      delivery: 'Live web application',
+    },
   },
   {
     id: 'king-abang',
@@ -119,6 +137,12 @@ export const projects: Project[] = [
     image: '/projects/kingstore.png',
     imageAlt: 'King Abang Gadget Repair landing page preview',
     liveUrl: 'https://kingstore-kry3.onrender.com/',
+    evidence: {
+      challenge: 'Help customers understand repair services and reach a reservation flow with confidence.',
+      ownership: 'Experience design, responsive TypeScript build, service presentation, and booking flow.',
+      systems: ['Service catalogue', 'Reservation journey', 'Mobile-first interface'],
+      delivery: 'Live client-facing website',
+    },
   },
   {
     id: 'skilltest-indonesia',
@@ -130,6 +154,12 @@ export const projects: Project[] = [
     image: '/projects/skilltest.png',
     imageAlt: 'SkillTest Indonesia customer dashboard preview',
     liveUrl: 'https://skilltestindonesia.com/',
+    evidence: {
+      challenge: 'Run order, task, balance, and commission workflows securely across multiple user roles.',
+      ownership: 'Frontend delivery, Firebase integration, role portals, responsive and bilingual UX, deployment, and handover.',
+      systems: ['Customer portal', 'Admin portal', 'Super Admin portal', 'Orders & tasks', 'Balances & notifications'],
+      delivery: 'Live production platform',
+    },
   },
   {
     id: 'mitra-test',
@@ -141,6 +171,12 @@ export const projects: Project[] = [
     image: '/projects/mitratest.png',
     imageAlt: 'Mitra Test Indonesia task dashboard preview',
     liveUrl: 'https://mitratestindonesia.com/login',
+    evidence: {
+      challenge: 'Provide a secure entry point and practical task workflow for day-to-day client operations.',
+      ownership: 'Authentication experience, responsive dashboard entry, workflow implementation, and client delivery.',
+      systems: ['Protected authentication', 'Task dashboard', 'Operational access'],
+      delivery: 'Live production system',
+    },
   },
   {
     id: 'holy-spirit-school',
@@ -152,6 +188,12 @@ export const projects: Project[] = [
     image: '/projects/hshr.png',
     imageAlt: 'Holy Spirit School of Imus landing page preview',
     liveUrl: 'https://hshr.onrender.com/landing_page',
+    evidence: {
+      challenge: 'Bring school information and ERP-style workflows into an accessible web experience.',
+      ownership: 'PHP and MySQL development, Bootstrap interface work, responsive delivery, and team leadership.',
+      systems: ['School-facing website', 'ERP-style workflows', 'Responsive pages'],
+      delivery: 'Live deployed school project',
+    },
   },
   {
     id: 'daily-grind',
@@ -163,6 +205,12 @@ export const projects: Project[] = [
     image: '/projects/fitness.png',
     imageAlt: 'Daily Grind Athletics landing page preview',
     liveUrl: 'https://one-pager-portfolio-fitness.vercel.app/',
+    evidence: {
+      challenge: 'Translate the energy of a fitness brand into a focused one-page conversion experience.',
+      ownership: 'Art direction, responsive interface build, motion design, content rhythm, and launch.',
+      systems: ['Editorial landing page', 'Motion language', 'Conversion sections'],
+      delivery: 'Live design exploration',
+    },
   },
   {
     id: 'part-time-hub',
@@ -174,6 +222,12 @@ export const projects: Project[] = [
     image: '/projects/parttimehub.png',
     imageAlt: 'Part Time Hub Indonesia job search page preview',
     liveUrl: 'https://parttimehubindonesia.com/',
+    evidence: {
+      challenge: 'Present localized opportunities through a direct, mobile-friendly single-page experience.',
+      ownership: 'Localized UX, responsive implementation, opportunity presentation, and launch.',
+      systems: ['Opportunity discovery', 'Localized content', 'Responsive interface'],
+      delivery: 'Live localized platform',
+    },
   },
 ]
 
