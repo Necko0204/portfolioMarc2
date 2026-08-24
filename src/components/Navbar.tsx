@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import {
   BriefcaseBusiness,
   Braces,
@@ -28,6 +28,7 @@ export function Navbar() {
   const [darkMode, setDarkMode] = useState(
     () => typeof window !== 'undefined' && window.localStorage.getItem('marc-portfolio-theme') === 'dark',
   )
+  const themeTransitionTimer = useRef<number | undefined>(undefined)
   const activeSection = useScrollSpy(sectionIds)
 
   useEffect(() => {
@@ -44,10 +45,27 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', updateProgress)
   }, [])
 
+  useEffect(() => () => {
+    if (themeTransitionTimer.current !== undefined) {
+      window.clearTimeout(themeTransitionTimer.current)
+    }
+    document.documentElement.classList.remove('theme-transitioning')
+  }, [])
+
   const toggleTheme = () => {
     const nextMode = !darkMode
+    const root = document.documentElement
+
+    if (themeTransitionTimer.current !== undefined) {
+      window.clearTimeout(themeTransitionTimer.current)
+    }
+    root.classList.add('theme-transitioning')
     setDarkMode(nextMode)
     window.localStorage.setItem('marc-portfolio-theme', nextMode ? 'dark' : 'light')
+    themeTransitionTimer.current = window.setTimeout(() => {
+      root.classList.remove('theme-transitioning')
+      themeTransitionTimer.current = undefined
+    }, 350)
   }
 
   return (
