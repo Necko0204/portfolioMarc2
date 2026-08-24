@@ -10,8 +10,35 @@ const statements = [
   'shipping > talking',
 ]
 
+const nameParts = profile.name.split(' ')
+const typedNameLines = [
+  nameParts.slice(0, -1).join(' '),
+  `${nameParts.at(-1)}.`,
+]
+const typedNameLength = typedNameLines.reduce((total, line) => total + line.length, 0)
+
+function TypedLine({ text, showCursor }: { text: string; showCursor: boolean }) {
+  const hasAccent = text.endsWith('.')
+
+  return (
+    <span className="typing-name-line">
+      {hasAccent ? text.slice(0, -1) : text}
+      {hasAccent && <span className="name-accent">.</span>}
+      {showCursor && (
+        <motion.span
+          className="typing-name-cursor"
+          aria-hidden="true"
+          animate={{ opacity: [1, 1, 0, 0] }}
+          transition={{ duration: 0.9, repeat: Infinity, ease: 'linear', times: [0, 0.45, 0.5, 1] }}
+        />
+      )}
+    </span>
+  )
+}
+
 export function Hero() {
   const [statement, setStatement] = useState(0)
+  const [typedName, setTypedName] = useState(0)
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
@@ -22,6 +49,34 @@ export function Hero() {
     )
     return () => window.clearInterval(interval)
   }, [reduceMotion])
+
+  useEffect(() => {
+    if (reduceMotion) return
+
+    let interval: number | undefined
+    const start = window.setTimeout(() => {
+      interval = window.setInterval(() => {
+        setTypedName((current) => {
+          if (current >= typedNameLength) {
+            if (interval !== undefined) window.clearInterval(interval)
+            return current
+          }
+          return current + 1
+        })
+      }, 74)
+    }, 420)
+
+    return () => {
+      window.clearTimeout(start)
+      if (interval !== undefined) window.clearInterval(interval)
+    }
+  }, [reduceMotion])
+
+  const visibleNameLength = reduceMotion ? typedNameLength : typedName
+  const firstLineLength = typedNameLines[0].length
+  const firstLine = typedNameLines[0].slice(0, Math.min(visibleNameLength, firstLineLength))
+  const secondLine = typedNameLines[1].slice(0, Math.max(0, visibleNameLength - firstLineLength))
+  const cursorLine = visibleNameLength <= firstLineLength ? 0 : 1
 
   return (
     <section className="hero-section" id="top">
@@ -42,7 +97,12 @@ export function Hero() {
             <div className="identity-mark" aria-hidden="true"><span>MA</span><i /></div>
             <div className="name-block">
               <p>Hello, I'm</p>
-              <h1>{profile.name}<span>.</span></h1>
+              <h1 className="typing-name" aria-label={`${profile.name}.`}>
+                <span aria-hidden="true">
+                  <TypedLine text={firstLine} showCursor={!reduceMotion && cursorLine === 0} />
+                  <TypedLine text={secondLine} showCursor={!reduceMotion && cursorLine === 1} />
+                </span>
+              </h1>
               <strong>Full Stack Web Developer / IT Graduate</strong>
             </div>
           </motion.div>

@@ -41,7 +41,7 @@
   <text x="776" y="266" fill="#64665F" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">"base"</text>
   <text x="880" y="266" fill="#171816" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">: "Tanza, Cavite",</text>
   <text x="776" y="302" fill="#64665F" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">"mode"</text>
-  <text x="880" y="302" fill="#171816" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">: "remote collaboration"</text>
+  <text x="880" y="302" fill="#171816" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="15">: "available for hire"</text>
 
   <line x1="776" y1="339" x2="1123" y2="339" stroke="#C7C9C2"/>
   <circle cx="786" cy="378" r="6" fill="#2DA44E"/>

@@ -2,13 +2,17 @@
 
 ![Marc Angelo Mendoza — Full Stack Web Developer](./public/readme-hero.svg)
 
+### Recruiter quick links
+
 <p>
-  <a href="https://portfolio-marc-mendoza.onrender.com"><strong>LIVE PORTFOLIO ↗</strong></a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="mailto:mendoza.marcangelo28@gmail.com"><strong>START A CONVERSATION</strong></a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="./public/Marc-Angelo-Mendoza-CV.pdf"><strong>READ THE CV</strong></a>
+  <a href="https://portfolio-marc-mendoza.onrender.com"><img src="https://img.shields.io/badge/PORTFOLIO-2255E6?style=for-the-badge&logo=googlechrome&logoColor=white" alt="View Marc's live portfolio"></a>
+  <a href="./public/Marc-Angelo-Mendoza-CV.pdf"><img src="https://img.shields.io/badge/RESUME-171816?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Read Marc's résumé"></a>
+  <a href="https://www.linkedin.com/in/marc-angelo-mendoza-b9a172349"><img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect with Marc on LinkedIn"></a>
+  <a href="mailto:mendoza.marcangelo28@gmail.com"><img src="https://img.shields.io/badge/EMAIL-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Marc"></a>
+  <a href="https://github.com/Necko0204"><img src="https://img.shields.io/badge/GITHUB-171816?style=for-the-badge&logo=github&logoColor=white" alt="View Marc's GitHub profile"></a>
 </p>
+
+<p><code>● OPEN TO WEB DEVELOPMENT OPPORTUNITIES</code></p>
 
 <sub>FULL STACK DEVELOPMENT&nbsp;&nbsp; / &nbsp;&nbsp;PRODUCT INTERFACES&nbsp;&nbsp; / &nbsp;&nbsp;OPERATIONAL SYSTEMS</sub>
 
@@ -18,35 +22,37 @@
 
 <a id="operating-mode"></a>
 
-## `01 /` Operating mode
+## `01 /` What I bring to a team
 
-> I build at the point where people, interfaces, and business workflows meet.
+> A developer who can understand the operation, communicate clearly, and carry the work through deployment.
 
-I’m **Marc**, a full stack developer from Tanza, Cavite. I turn complicated processes into software that feels clear to use and dependable to run—from the public-facing screen to the admin tools and data underneath it.
+I’m **Marc**, a full stack developer from Tanza, Cavite. I turn complicated processes into software that feels clear to use and dependable to run—from the customer-facing interface to admin tooling, secure data flows, deployment, and handover.
 
 <table>
   <tr>
     <td width="33%" valign="top">
-      <strong>◼ UNDERSTAND</strong><br><br>
-      Map the real workflow, users, edge cases, and definition of success.
+      <strong>◼ PRODUCTION EXPERIENCE</strong><br><br>
+      Live client platforms with authentication, role-based portals, transactions, notifications, and operational workflows.
     </td>
     <td width="33%" valign="top">
-      <strong>◼ ENGINEER</strong><br><br>
-      Shape responsive interfaces, secure data flows, and maintainable systems.
+      <strong>◼ END-TO-END OWNERSHIP</strong><br><br>
+      Comfortable moving from requirements and interface design through implementation, testing, deployment, and handover.
     </td>
     <td width="33%" valign="top">
-      <strong>◼ DELIVER</strong><br><br>
-      Deploy, document, hand over, measure, and keep improving what ships.
+      <strong>◼ CLIENT COMMUNICATION</strong><br><br>
+      Experience supporting international clients and translating business needs into practical technical decisions.
     </td>
   </tr>
 </table>
 
 ```text
-current.signal
-├── building      production platforms for real client operations
+candidate.snapshot
+├── target        full stack / frontend web development roles
+├── education     BS Information Technology · 2025
 ├── strongest_at  React · TypeScript · Firebase · responsive UI
-├── also_speaks   PHP · SQL · Python · Java · C# · C++
-└── cares_about   clarity · reliability · customer empathy
+├── ownership     requirements → build → deployment → handover
+├── collaboration international clients · remote teams
+└── values        clarity · reliability · customer empathy
 ```
 
 <a id="proof-of-work"></a>
@@ -163,9 +169,9 @@ Most portfolio content lives in [`src/data/portfolio.ts`](src/data/portfolio.ts)
 
 <div align="center">
 
-### Have a messy workflow that deserves a clean system?
+### Looking for a developer who can understand the workflow and ship the system?
 
-[**mendoza.marcangelo28@gmail.com**](mailto:mendoza.marcangelo28@gmail.com)
+[**Start a conversation →**](mailto:mendoza.marcangelo28@gmail.com)
 
 <sub>DESIGNED + ENGINEERED BY MARC ANGELO MENDOZA · 2026</sub>
 
