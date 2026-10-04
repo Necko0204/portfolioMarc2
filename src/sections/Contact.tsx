@@ -1,10 +1,27 @@
+import { useEffect, useRef, useState } from 'react'
 import { ArrowDownToLine, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Reveal } from '../components/Reveal'
 import { profile, socialLinks } from '../data/portfolio'
 
 export function Contact() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [arrived, setArrived] = useState(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setArrived(true)
+        observer.disconnect()
+      }
+    }, { threshold: 0.15 })
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="contact-section" id="contact">
+    <section ref={sectionRef} className={`contact-section${arrived ? ' is-arrived' : ''}`} id="contact">
       <div className="contact-topline"><span>05 / Contact</span><span>Available for opportunities <i /></span></div>
       <Reveal className="contact-heading">
         <p>Let's turn it into something useful.</p>

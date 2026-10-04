@@ -6,6 +6,7 @@ import {
   Download,
   FolderKanban,
   Moon,
+  Search,
   Send,
   Sun,
   UserRound,
@@ -23,7 +24,7 @@ const navigation = [
 
 const sectionIds = navigation.map((item) => item.id)
 
-export function Navbar() {
+export function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette: () => void }) {
   const [progress, setProgress] = useState(0)
   const [darkMode, setDarkMode] = useState(
     () => typeof window !== 'undefined' && window.localStorage.getItem('marc-portfolio-theme') === 'dark',
@@ -88,6 +89,7 @@ export function Navbar() {
         })}
       </nav>
       <div className="rail-actions">
+        <button type="button" onClick={onOpenCommandPalette} aria-label="Open command palette" data-label="Search /"><Search aria-hidden="true" /></button>
         <button type="button" onClick={toggleTheme} aria-label={darkMode ? 'Use light theme' : 'Use dark theme'} data-label={darkMode ? 'Light mode' : 'Dark mode'}>
           {darkMode ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
         </button>
