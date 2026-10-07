@@ -11,11 +11,13 @@ const statements = [
 ]
 
 const nameParts = profile.name.split(' ')
-const typedNameLines = [
+const nameLines = [
   nameParts.slice(0, -1).join(' '),
   `${nameParts.at(-1)}.`,
 ]
-const typedNameLength = typedNameLines.reduce((total, line) => total + line.length, 0)
+const scrambleCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+const scrambleFrames = Math.max(...nameLines.map((line) => Math.ceil((line.length - 1) / 2) * 2 + 5))
+let nameIntroPlayed = false
 const recruiterSnapshot = [
   { value: String(projects.length).padStart(2, '0'), label: 'selected builds' },
   { value: '03', label: 'role-based portals' },
@@ -23,28 +25,78 @@ const recruiterSnapshot = [
   { value: profile.graduated, label: 'BSIT graduate' },
 ]
 
-function TypedLine({ text, showCursor }: { text: string; showCursor: boolean }) {
-  const hasAccent = text.endsWith('.')
-
+function ScrambleLine({ text, lineIndex, frame, measure = false }: { text: string; lineIndex: number; frame: number; measure?: boolean }) {
+  let position = 0
   return (
-    <span className="typing-name-line">
-      {hasAccent ? text.slice(0, -1) : text}
-      {hasAccent && <span className="name-accent">.</span>}
-      {showCursor && (
-        <motion.span
-          className="typing-name-cursor"
-          aria-hidden="true"
-          animate={{ opacity: [1, 1, 0, 0] }}
-          transition={{ duration: 0.9, repeat: Infinity, ease: 'linear', times: [0, 0.45, 0.5, 1] }}
-        />
-      )}
+    <span className="scramble-name-line">
+      {text.split(' ').map((word, wordIndex) => {
+        const wordStart = position
+        position += word.length + 1
+        return (
+          <span className="scramble-name-word" key={`${lineIndex}-${wordIndex}`}>
+            {word.split('').map((character, characterIndex) => {
+              const index = wordStart + characterIndex
+              const start = Math.round(Math.abs(index - (text.length - 1) / 2) * 2)
+              const active = frame >= start
+              const settled = frame >= start + 5
+              const display = settled ? character : scrambleCharacters[(index * 13 + frame * 7 + lineIndex * 11 + scrambleCharacters.length * 10) % scrambleCharacters.length]
+              return (
+                <span className={`scramble-name-glyph${!measure && active ? ' is-active' : ''}${!measure && settled ? ' is-settled' : ''}`} key={index}>
+                  <span className="scramble-name-glyph__measure">{character}</span>
+                  {!measure && <span className={`scramble-name-glyph__face${character === '.' ? ' name-accent' : ''}`}>{display}</span>}
+                </span>
+              )
+            })}
+          </span>
+        )
+      }).reduce<React.ReactNode[]>((parts, word, index) => {
+        if (index > 0) parts.push(' ')
+        parts.push(word)
+        return parts
+      }, [])}
     </span>
+  )
+}
+
+function ScrambleName() {
+  const reduceMotion = useReducedMotion()
+  const [frame, setFrame] = useState(() => nameIntroPlayed ? scrambleFrames : -1)
+
+  useEffect(() => {
+    if (reduceMotion || nameIntroPlayed) return
+    let currentFrame = -1
+    let interval: number | undefined
+    const start = window.setTimeout(() => {
+      interval = window.setInterval(() => {
+        currentFrame += 1
+        setFrame(currentFrame)
+        if (currentFrame >= scrambleFrames) {
+          nameIntroPlayed = true
+          window.clearInterval(interval)
+        }
+      }, 52)
+    }, 240)
+    return () => {
+      window.clearTimeout(start)
+      if (interval !== undefined) window.clearInterval(interval)
+    }
+  }, [reduceMotion])
+
+  const visibleFrame = reduceMotion ? scrambleFrames : frame
+  return (
+    <h1 className="scramble-name" aria-label={`${profile.name}.`}>
+      <span className="scramble-name-measure" aria-hidden="true">
+        {nameLines.map((line, index) => <ScrambleLine key={index} text={line} lineIndex={index} frame={scrambleFrames} measure />)}
+      </span>
+      <span className="scramble-name-visible" aria-hidden="true">
+        {nameLines.map((line, index) => <ScrambleLine key={index} text={line} lineIndex={index} frame={visibleFrame} />)}
+      </span>
+    </h1>
   )
 }
 
 export function Hero() {
   const [statement, setStatement] = useState(0)
-  const [typedName, setTypedName] = useState(0)
   const [aboutOpen, setAboutOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [crumpling, setCrumpling] = useState(false)
@@ -79,34 +131,6 @@ export function Hero() {
     )
     return () => window.clearInterval(interval)
   }, [reduceMotion])
-
-  useEffect(() => {
-    if (reduceMotion) return
-
-    let interval: number | undefined
-    const start = window.setTimeout(() => {
-      interval = window.setInterval(() => {
-        setTypedName((current) => {
-          if (current >= typedNameLength) {
-            if (interval !== undefined) window.clearInterval(interval)
-            return current
-          }
-          return current + 1
-        })
-      }, 74)
-    }, 420)
-
-    return () => {
-      window.clearTimeout(start)
-      if (interval !== undefined) window.clearInterval(interval)
-    }
-  }, [reduceMotion])
-
-  const visibleNameLength = reduceMotion ? typedNameLength : typedName
-  const firstLineLength = typedNameLines[0].length
-  const firstLine = typedNameLines[0].slice(0, Math.min(visibleNameLength, firstLineLength))
-  const secondLine = typedNameLines[1].slice(0, Math.max(0, visibleNameLength - firstLineLength))
-  const cursorLine = visibleNameLength <= firstLineLength ? 0 : 1
 
   return (
     <section className="hero-section" id="top">
@@ -183,16 +207,7 @@ export function Hero() {
             <button className="identity-mark identity-mark--button" type="button" aria-label="Open personal background" aria-controls="about-canvas-page" onClick={openPersonalPage}><span>MA</span><i /></button>
             <div className="name-block">
               <p>Hello, I'm</p>
-              <h1 className="typing-name" aria-label={`${profile.name}.`}>
-                <span className="typing-name-measure" aria-hidden="true">
-                  <span className="typing-name-line">{typedNameLines[0]}</span>
-                  <span className="typing-name-line">{typedNameLines[1]}</span>
-                </span>
-                <span className="typing-name-visible" aria-hidden="true">
-                  <TypedLine text={firstLine} showCursor={!reduceMotion && cursorLine === 0} />
-                  <TypedLine text={secondLine} showCursor={!reduceMotion && cursorLine === 1} />
-                </span>
-              </h1>
+              <ScrambleName />
               <strong>Full Stack Web Developer / IT Graduate</strong>
             </div>
           </motion.div>

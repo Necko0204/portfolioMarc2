@@ -441,18 +441,16 @@
   line-height: .9;
 }
 
-.typing-name { position: relative; }
-.typing-name-measure { display: block; visibility: hidden; }
-.typing-name-visible { position: absolute; inset: 0; display: block; }
-.typing-name-line { display: block; min-height: .9em; }
-.typing-name-cursor {
-  display: inline-block;
-  width: .11em;
-  height: .76em;
-  margin-left: .08em;
-  background: var(--blue);
-  vertical-align: -.02em;
-}
+.scramble-name { position: relative; }
+.scramble-name-measure { display: block; visibility: hidden; }
+.scramble-name-visible { position: absolute; inset: 0; display: block; }
+.scramble-name-line { display: block; min-height: .9em; }
+.scramble-name-word { display: inline-block; white-space: nowrap; }
+.scramble-name-glyph { position: relative; display: inline-block; }
+.scramble-name-glyph__measure { visibility: hidden; }
+.scramble-name-glyph__face { position: absolute; inset: 0; opacity: 0; text-align: center; transform: translateY(.12em); transition: opacity .14s ease, transform .22s cubic-bezier(.22, 1, .36, 1); }
+.scramble-name-glyph.is-active .scramble-name-glyph__face { opacity: .55; transform: translateY(0); }
+.scramble-name-glyph.is-settled .scramble-name-glyph__face { opacity: 1; }
 
 .name-block h1 .name-accent,
 .work-intro h2 span,
