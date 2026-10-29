@@ -64,7 +64,7 @@ Not concept shots—live products made for real workflows. Select a frame to ope
 <table>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://skilltestindonesia.com/">
+      <a href="https://trainingtestindonesia.com/">
         <img src="./public/projects/skilltest.png" alt="SkillTest Indonesia customer dashboard" width="100%">
       </a>
       <h3>01 — SkillTest Indonesia ↗</h3>
@@ -72,7 +72,7 @@ Not concept shots—live products made for real workflows. Select a frame to ope
       <code>React</code> <code>TypeScript</code> <code>Firebase</code>
     </td>
     <td width="50%" valign="top">
-      <a href="https://mitratestindonesia.com/login">
+      <a href="https://mitrakerjaindonesia.com/">
         <img src="./public/projects/mitratest.png" alt="Mitra Test Indonesia task dashboard" width="100%">
       </a>
       <h3>02 — Mitra Test Indonesia ↗</h3>
