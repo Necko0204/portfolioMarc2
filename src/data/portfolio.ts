@@ -282,7 +282,7 @@ export const projects: Project[] = [
     tech: ['Construction', 'Recruitment', 'Job Listings'],
     image: '/projects/peak-recruitment.png',
     imageAlt: 'Peak Recruitment Services homepage with a dark blue hero and site labour navigation',
-    video: '/projects/peak-recruitment.webm',
+    video: '/projects/peak-recruitment.mp4',
     liveUrl: 'https://peakwb2.vercel.app/',
     screenLabel: 'Recruitment homepage',
     evidence: {
