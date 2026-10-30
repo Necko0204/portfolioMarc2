@@ -221,6 +221,7 @@ export const projects: Project[] = [
     tech: ['UK Fitness', 'Event Discovery', 'Directory'],
     image: '/projects/upforit.png',
     imageAlt: 'Upforit UK fitness event discovery homepage',
+    video: '/projects/upforit.mp4',
     liveUrl: 'https://upforit-re-audit.vercel.app/',
     screenLabel: 'Event discovery screen',
     workflow: {

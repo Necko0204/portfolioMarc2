@@ -51,7 +51,7 @@ function ProjectPreview({ project }: { project: Project }) {
               loop
               playsInline
               preload="metadata"
-              aria-label="Short scrolling preview of the Peak Recruitment Services website"
+              aria-label={`Short scrolling preview of the ${project.title} website`}
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
             />
