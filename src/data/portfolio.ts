@@ -17,6 +17,7 @@ export interface Project {
   tech: string[]
   image: string
   imageAlt: string
+  video?: string
   liveUrl: string
   screenLabel?: string
   screens?: { label: string; image: string; alt: string }[]
@@ -281,6 +282,7 @@ export const projects: Project[] = [
     tech: ['Construction', 'Recruitment', 'Job Listings'],
     image: '/projects/peak-recruitment.png',
     imageAlt: 'Peak Recruitment Services homepage with a dark blue hero and site labour navigation',
+    video: '/projects/peak-recruitment.webm',
     liveUrl: 'https://peakwb2.vercel.app/',
     screenLabel: 'Recruitment homepage',
     evidence: {

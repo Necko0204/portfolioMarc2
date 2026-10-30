@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Eye, Search } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Eye, Pause, Play, Search } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { projects, type Project } from '../data/portfolio'
 
@@ -7,9 +7,23 @@ function ProjectPreview({ project }: { project: Project }) {
   const host = project.liveUrl.replace(/^https?:\/\//, '').split('/')[0]
   const screens = project.screens ?? [{ label: project.screenLabel ?? 'Main screen', image: project.image, alt: project.imageAlt }]
   const [activeScreenIndex, setActiveScreenIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const reduceMotion = useReducedMotion()
   const activeScreen = screens[activeScreenIndex] ?? screens[0]
+  const showVideo = Boolean(project.video && activeScreenIndex === 0 && !reduceMotion)
 
   useEffect(() => setActiveScreenIndex(0), [project.id])
+
+  const toggleVideo = () => {
+    const video = videoRef.current
+    if (!video) return
+    if (video.paused) {
+      void video.play().catch(() => setIsPlaying(false))
+    } else {
+      video.pause()
+    }
+  }
 
   return (
     <div className="project-visual">
@@ -18,16 +32,46 @@ function ProjectPreview({ project }: { project: Project }) {
         <p>{host}</p>
         <i>{activeScreen.label}</i>
       </div>
-      <a
-        className="project-preview-link"
-        href={project.liveUrl}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Open ${project.title} live website`}
-      >
-        <img className="project-preview-image" src={activeScreen.image} alt={activeScreen.alt} loading="lazy" decoding="async" />
-        <span>Open live project <ArrowUpRight aria-hidden="true" /></span>
-      </a>
+      <div className="project-preview-stage">
+        <a
+          className="project-preview-link"
+          href={project.liveUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Open ${project.title} live website`}
+        >
+          {showVideo ? (
+            <video
+              ref={videoRef}
+              className="project-preview-video"
+              src={project.video}
+              poster={activeScreen.image}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Short scrolling preview of the Peak Recruitment Services website"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+            />
+          ) : (
+            <img className="project-preview-image" src={activeScreen.image} alt={activeScreen.alt} loading="lazy" decoding="async" />
+          )}
+          <span>Open live project <ArrowUpRight aria-hidden="true" /></span>
+        </a>
+        {showVideo && (
+          <button
+            className="project-video-toggle"
+            type="button"
+            aria-label={isPlaying ? 'Pause website preview' : 'Play website preview'}
+            onClick={toggleVideo}
+          >
+            {isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+            {isPlaying ? 'Pause preview' : 'Play preview'}
+          </button>
+        )}
+      </div>
       {screens.length > 1 && (
         <div className="project-screen-picker" role="group" aria-label={`${project.title} screenshots`}>
           {screens.map((screen, index) => (
